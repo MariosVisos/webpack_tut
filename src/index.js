@@ -18,3 +18,6 @@ function component() {
   }
   
   document.body.appendChild(component());
+
+  // A logical next step from here is minifying and optimizing your images.
+  // Check out the image-webpack-loader and url-loader for more on how you can enhance your image loading process.
