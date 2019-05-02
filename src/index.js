@@ -1,21 +1,10 @@
 import _ from 'lodash';
-import './style.css';
-import WebpackIcon from './webpack.png';
-import Data from './data.xml';
 
 function component() {
     const element = document.createElement('div');
   
     element.innerHTML = _.join(['Hello', 'webpack'], ' ');
-    element.classList.add('hello');
 
-    // Add the image to the existing div.
-    const myIcon = new Image();
-    myIcon.src = WebpackIcon;
-
-    element.appendChild(myIcon);
-    console.log(Data);
-    
 
     return element;
   }
