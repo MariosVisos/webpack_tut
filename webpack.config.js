@@ -22,40 +22,16 @@ const webpack = require('webpack');
 module.exports = {
     mode: 'development',
     entry: {
-        app: './src/index.js',
-        another: './src/another-module.js'
+        index: './src/index.js'
     },
-    devtool: 'inline-source-map',
-    devServer : {
-        contentBase : './dist',
-        hot: true
-    },
-    module: {
-        rules: [
-            {
-                test: /\.css$/,
-                use: ['style-loader', 'css-loader']
-            }
-        ]
-    },
-    plugins: [
-        new CleanWebpackPlugin(),
-        new HtmlWebpackPlugin({
-            title:'Output Management'
-        }),
-        new webpack.HotModuleReplacementPlugin()
-    ],
     output: {
         filename: '[name].bundle.js',
         path: path.resolve(__dirname, 'dist'),
-        publicPath: '/'
+        chunkFilename: '[name].bundle.js'
     },
-    optimization: {
-        splitChunks: {
-            chunks: 'all'
-        }
-    }
 };
+
+// The use of chunkFilename determines the name of non-entry chunk files. For more information on chunkFilename
 
 // When using multiple entry points: As mentioned there are some pitfalls to this approach:
 // If there are any duplicated modules between entry chunks they will be included in both bundles.
