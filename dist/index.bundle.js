@@ -205,7 +205,7 @@
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-eval("function getComponent() {\r\n  return __webpack_require__.e(/*! import() | lodash */ \"vendors~lodash\").then(__webpack_require__.t.bind(null, /*! lodash */ \"./node_modules/lodash/lodash.js\", 7)).then(({ default: _ }) => {\r\n    const element = document.createElement('div');\r\n    element.innerHTML = _.join(['Hello', 'webpack'], ' ');\r\n    return element;\r\n     \r\n  }).catch(error => 'An error occurred while loading the component');\r\n}\r\n\r\ngetComponent().then(component => {\r\n  document.body.appendChild(component);\r\n})\r\n\r\n// The reason we need default is that since webpack 4, when importing a CommonJS module, the import will no longer \r\n// resolve to the value of module.exports, it will instead create an artificial namespace object for the CommonJS module.\n\n//# sourceURL=webpack:///./src/index.js?");
+eval("async function getComponent() {\r\n\r\n  const element = document.createElement('div');\r\n  const { default: _ } = await __webpack_require__.e(/*! import() | lodash */ \"vendors~lodash\").then(__webpack_require__.t.bind(null, /*! lodash */ \"./node_modules/lodash/lodash.js\", 7));\r\n \r\n  element.innerHTML = _.join(['Hello', 'webpack'], ' ');\r\n  return element;\r\n     \r\n}\r\n\r\ngetComponent().then(component => {\r\n  document.body.appendChild(component);\r\n})\r\n\r\n// The reason we need default is that since webpack 4, when importing a CommonJS module, the import will no longer \r\n// resolve to the value of module.exports, it will instead create an artificial namespace object for the CommonJS module.\n\n//# sourceURL=webpack:///./src/index.js?");
 
 /***/ })
 
