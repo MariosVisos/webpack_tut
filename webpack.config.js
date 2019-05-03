@@ -18,6 +18,7 @@ module.exports = {
     mode: 'development',
     entry: {
         app: './src/index.js',
+        another: './src/another-module.js'
     },
     devtool: 'inline-source-map',
     devServer : {
@@ -25,13 +26,13 @@ module.exports = {
         hot: true
     },
     module: {
-              rules: [
-                {
-                  test: /\.css$/,
-                  use: ['style-loader', 'css-loader']
-                }
-              ]
-            },
+        rules: [
+            {
+                test: /\.css$/,
+                use: ['style-loader', 'css-loader']
+            }
+        ]
+    },
     plugins: [
         new CleanWebpackPlugin(),
         new HtmlWebpackPlugin({
