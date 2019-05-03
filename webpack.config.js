@@ -20,6 +20,7 @@ const webpack = require('webpack');
 // promise-loader: Similar to the bundle-loader but uses promises.
 
 module.exports = {
+    mode: 'development',
     entry: './src/index.js',
     plugins: [
       // new CleanWebpackPlugin(['dist/*']) for < v2 versions of CleanWebpackPlugin
@@ -27,6 +28,7 @@ module.exports = {
       new HtmlWebpackPlugin({
         title: 'Caching'
       }),
+      new webpack.HashedModuleIdsPlugin()
     ],
     output: {
       filename: '[name].[contenthash].js',
