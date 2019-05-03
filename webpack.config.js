@@ -12,9 +12,14 @@ const CleanWebpackPlugin = require('clean-webpack-plugin');
 // the dist/ folder. This means that it will replace our index.html file with a newly generated one.
 
 module.exports = {
+    mode: 'development',
     entry: {
         app: './src/index.js',
         print: './src/print.js'
+    },
+    devtool: 'inline-source-map',
+    devServer : {
+        contentBase : './dist'
     },
     plugins: [
         new CleanWebpackPlugin(),
@@ -24,7 +29,8 @@ module.exports = {
     ],
     output: {
         filename: '[name].bundle.js',
-        path: path.resolve(__dirname, 'dist')
+        path: path.resolve(__dirname, 'dist'),
+        publicPath: '/'
     }
 };
 
