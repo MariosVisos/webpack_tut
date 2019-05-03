@@ -1,6 +1,7 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
+const webpack = require('webpack');
 
 // npx webpack --config webpack.config.js to run the build using this config (--config optional)
 // npm run build
@@ -11,21 +12,24 @@ const CleanWebpackPlugin = require('clean-webpack-plugin');
 //Before we do a build, you should know that the HtmlWebpackPlugin by default will generate its own index.html file, even though we already have one in
 // the dist/ folder. This means that it will replace our index.html file with a newly generated one.
 
+// You can use the CLI to modify the webpack-dev-server configuration with the following command: webpack-dev-server --hotOnly.
+
 module.exports = {
     mode: 'development',
     entry: {
         app: './src/index.js',
-        print: './src/print.js'
     },
     devtool: 'inline-source-map',
     devServer : {
-        contentBase : './dist'
+        contentBase : './dist',
+        hot: true
     },
     plugins: [
         new CleanWebpackPlugin(),
         new HtmlWebpackPlugin({
             title:'Output Management'
-        })
+        }),
+        new webpack.HotModuleReplacementPlugin()
     ],
     output: {
         filename: '[name].bundle.js',
