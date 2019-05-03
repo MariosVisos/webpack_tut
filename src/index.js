@@ -1,16 +1,17 @@
-async function getComponent() {
+import _ from 'lodash';
+import Print from './print';
 
-  const element = document.createElement('div');
-  const { default: _ } = await import(/* webpackChunkName: "lodash" */ 'lodash');
- 
-  element.innerHTML = _.join(['Hello', 'webpack'], ' ');
-  return element;
-     
-}
+  function component() {
+    const element = document.createElement('div');
 
-getComponent().then(component => {
-  document.body.appendChild(component);
-})
+    // Lodash, now imported by this script
+    element.innerHTML = _.join(['Hello', 'webpack'], ' ');
+    element.onclick = Print.bind(null, 'Hello webpack!');
+
+    return element;
+  }
+
+  document.body.appendChild(component());
 
 // The reason we need default is that since webpack 4, when importing a CommonJS module, the import will no longer 
 // resolve to the value of module.exports, it will instead create an artificial namespace object for the CommonJS module.

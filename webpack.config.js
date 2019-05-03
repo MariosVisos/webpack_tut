@@ -20,16 +20,31 @@ const webpack = require('webpack');
 // promise-loader: Similar to the bundle-loader but uses promises.
 
 module.exports = {
-    mode: 'development',
-    entry: {
-        index: './src/index.js'
-    },
+    entry: './src/index.js',
+    plugins: [
+      // new CleanWebpackPlugin(['dist/*']) for < v2 versions of CleanWebpackPlugin
+      new CleanWebpackPlugin(),
+      new HtmlWebpackPlugin({
+        title: 'Caching'
+      }),
+    ],
     output: {
-        filename: '[name].bundle.js',
-        path: path.resolve(__dirname, 'dist'),
-        chunkFilename: '[name].bundle.js'
+      filename: '[name].[contenthash].js',
+      path: path.resolve(__dirname, 'dist')
     },
-};
+    optimization: {
+      runtimeChunk: 'single',
+      splitChunks: {
+        cacheGroups: {
+          vendor: {
+            test: /[\\/]node_modules[\\/]/,
+            name: 'vendors',
+            chunks: 'all'
+          }
+        }
+      }
+    }
+  };
 
 // The use of chunkFilename determines the name of non-entry chunk files. For more information on chunkFilename
 
@@ -41,3 +56,8 @@ module.exports = {
 
 //The SplitChunksPlugin allows us to extract common dependencies into an existing entry chunk or an entirely new chunk. Let's use this
 //  to de-duplicate the lodash dependency from the previous example:
+
+// It's also good practice to extract third-party libraries, such as lodash or react, to a separate vendor chunk as they are less
+// likely to change than our local source code. This step will allow clients to request even less from the server to stay up to date.
+// This can be done by using the cacheGroups option of the SplitChunksPlugin demonstrated in Example 2 of SplitChunksPlugin. 
+// Lets add optimization.splitChunks with cacheGroups with next params and build:
