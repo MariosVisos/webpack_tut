@@ -1,0 +1,3 @@
+babel-loader: Teaches babel how to work with webpack (it is like a compatibility layer) (babel has support on how to work with each build system)
+babel-core: Knows hot to take in code, parse(transform) it, and generate some output files.
+babel-preset-env: Ruleset for telling babel exactly what pieces of ES2015/6/7 syntax to look for, and how to turn it into ES5.
